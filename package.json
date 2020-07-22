@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/alexbonti/sit725-prac2#readme",
   "dependencies": {
-    "express": "*"
+    "express": "*",
+    "sentiment": "*"
   }
 }

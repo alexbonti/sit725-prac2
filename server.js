@@ -1,5 +1,7 @@
 const express = require('express')
+const Sentiment = require('sentiment');
 
+var sentiment = new Sentiment();
 const app = express()
 const PORT=3000;
 
@@ -23,6 +25,11 @@ let addition=function(num1,num2){
     return result
 }
 
+let sentimentAnalysis=function(text){
+    var result = sentiment.analyze(text);
+    return result;
+}
+
 app.get('/adder',function(request,response){
     let num1=parseInt(request.query.num1);
     let num2=parseInt(request.query.num2);
@@ -30,6 +37,12 @@ app.get('/adder',function(request,response){
     response.send('The sum is'+sum);
 })
 
+app.get('/sentiment',function(request,response){
+    let text=request.query.text;
+    let analysis=sentimentAnalysis(text)
+    console.log(analysis)
+    response.json(analysis)
+})
 
 
  // start the server and listen on port 3000
